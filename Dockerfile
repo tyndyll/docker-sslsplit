@@ -1,13 +1,13 @@
-FROM            ubuntu:12.04
+FROM            debian:latest
 MAINTAINER      platform@shopkeep.com
 
 ADD     sslsplit    /etc/sslsplit
-ADD     iptables.sh   /tmp/iptables.sh
+ADD     iptables.sh    /tmp/iptables.sh
 VOLUME  ["/var/sslsplit"]
 
-RUN     apt-get update
-RUN     apt-get -y upgrade
-RUN     apt-get -y install wget build-essential
+RUN     apt-get update && apt-get -y upgrade
+
+RUN     apt-get -y install wget build-essential iptables
 
 WORKDIR     /tmp
 RUN         wget  http://mirror.roe.ch/rel/sslsplit/sslsplit-0.4.8.tar.bz2
