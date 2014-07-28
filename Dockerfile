@@ -21,12 +21,15 @@ RUN         mkdir /tmp/sslsplit
 RUN         apt-get -y purge wget build-essential
 RUN         apt-get -y autoremove
 
-ENTRYPOINT  /bin/sh /tmp/iptables.sh && /tmp/sslsplit-0.4.8/sslsplit -D \
-                -l /var/sslsplit/connections.log \
-                -j /var/sslsplit \
-                -S /var/sslsplit/logdir/ \
-                -k /etc/sslsplit/ca.key \
-                -c /etc/sslsplit/ca.crt \
-                  ssl 0.0.0.0 8443 \
-                  tcp 0.0.0.0 8080
+EXPOSE	    443
+
+ENTRYPOINT  /bin/bash
+#  /bin/sh /tmp/iptables.sh && /tmp/sslsplit-0.4.8/sslsplit -D \
+#                -l /var/sslsplit/connections.log \
+#                -j /var/sslsplit \
+#                -S /var/sslsplit/logdir/ \
+#                -k /etc/sslsplit/ca.key \
+#                -c /etc/sslsplit/ca.crt \
+#                  ssl 0.0.0.0 8443 \
+#                  tcp 0.0.0.0 8080
 
